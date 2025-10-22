@@ -24,6 +24,16 @@ spring:
   rabbitmq:
     addresses: amqps://unodvbxe:UCknjRCONEFvXVreG45wUdSdRtS5cr0G@woodpecker.rmq.cloudamqp.com/unodvbxe
 
+ead:
+  broker:
+    exchange:
+      notificationCommandExchange: ead.notificationcommand
+    queue:
+      notificationcommandQueue:
+        name: ead.notificationcommand.ms.notification
+    key:
+        notificationCommandKey: ms.notification
+
 management:
   endpoints:
     web:
