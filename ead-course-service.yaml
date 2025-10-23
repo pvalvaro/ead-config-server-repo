@@ -35,3 +35,18 @@ ead:
     queue:
       userEventQueue:
         name: ead.userevent.ms.course
+        
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - refresh
+          - health
+          
+logging:
+  level:
+    com.ead: TRACE
+    root: INFO
+    org.springframework.web: DEBUG
+    org.hibernate: INFO  
