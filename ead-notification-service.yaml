@@ -1,5 +1,7 @@
 server:
   port: 8084
+  servlet:
+    context-path: '/ead-notification/'
 
 spring:
   application:
@@ -24,6 +26,13 @@ spring:
   rabbitmq:
     addresses: amqps://unodvbxe:UCknjRCONEFvXVreG45wUdSdRtS5cr0G@woodpecker.rmq.cloudamqp.com/unodvbxe
 
+logging:
+  level:
+    com.ead: TRACE
+    root: INFO
+    org.springframework.web: DEBUG
+    org.hibernate: INFO
+    
 ead:
   broker:
     exchange:
