@@ -29,10 +29,10 @@ ead:
     exchange:
       notificationCommandExchange: ead.notificationcommand
     queue:
-      notificationcommandQueue:
+      notificationCommandQueue:
         name: ead.notificationcommand.ms.notification
     key:
-        notificationCommandKey: ms.notification
+      notificationCommandKey: ms.notification
 
 management:
   endpoints:
