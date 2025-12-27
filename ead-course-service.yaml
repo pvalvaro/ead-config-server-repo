@@ -7,10 +7,9 @@ spring:
   application:
     name: ead-course-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/ead-course-v2
+    url:  jdbc:postgresql://localhost:5432/ead-course-v2
     username: postgres
     password: wete2808
-    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
@@ -22,9 +21,10 @@ spring:
             non-contextual-creation: true
   output:
     ansi:
-      enabled: always
+      enabled: Always
   rabbitmq:
     addresses: amqps://unodvbxe:UCknjRCONEFvXVreG45wUdSdRtS5cr0G@woodpecker.rmq.cloudamqp.com/unodvbxe
+
 ead:
   api:
     url:
@@ -38,7 +38,7 @@ ead:
         name: ead.userevent.ms.course
     key:
       notificationCommandKey: ms.notification
-        
+
 management:
   endpoints:
     web:
@@ -52,4 +52,6 @@ logging:
     com.ead: TRACE
     root: INFO
     org.springframework.web: DEBUG
-    org.hibernate: INFO  
+    org.hibernate: INFO
+
+

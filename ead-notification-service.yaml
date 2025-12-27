@@ -7,10 +7,9 @@ spring:
   application:
     name: ead-notification-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/ead-notification
+    url:  jdbc:postgresql://localhost:5432/ead-notification-v2
     username: postgres
     password: wete2808
-    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
@@ -22,9 +21,10 @@ spring:
             non-contextual-creation: true
   output:
     ansi:
-      enabled: always
+      enabled: Always
   rabbitmq:
     addresses: amqps://unodvbxe:UCknjRCONEFvXVreG45wUdSdRtS5cr0G@woodpecker.rmq.cloudamqp.com/unodvbxe
+
 
 logging:
   level:
