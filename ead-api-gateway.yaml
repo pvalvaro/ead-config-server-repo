@@ -2,8 +2,6 @@ server:
   port: 8080
 
 spring:
-  application:
-    name: ead-api-gateway
   cloud:
     gateway:
       mvc:
@@ -12,11 +10,13 @@ spring:
             uri: lb://EAD-AUTHUSER-SERVICE
             predicates:
               - Path=/ead-authuser/**
+            filters:
+              # Este filtro remove o '/ead-authuser' da URL original
+              - RewritePath=/ead-authuser/(?<segment>.*), /${segment}
+          
           - id: course-service
             uri: lb://EAD-COURSE-SERVICE
             predicates:
               - Path=/ead-course/**
-          - id: notification-service
-            uri: lb://EAD-NOTIFICATION-SERVICE
-            predicates:
-              - Path=/ead-notification/**
+            filters:
+              - RewritePath=/ead-course/(?<segment>.*), /${segment}
