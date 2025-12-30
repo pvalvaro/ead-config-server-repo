@@ -2,6 +2,8 @@ server:
   port: 8080
 
 spring:
+  application:
+    name: ead-api-gateway
   cloud:
     gateway:
       mvc:
@@ -11,12 +13,20 @@ spring:
             predicates:
               - Path=/ead-authuser/**
             filters:
-              # Este filtro remove o '/ead-authuser' da URL original
-              - RewritePath=/ead-authuser/(?<segment>.*), /${segment}
+              # Remove o prefixo /ead-authuser antes de enviar ao microserviço
+              # O uso de '$\' ou '$$' depende da versão, mas '$\' é o padrão para escape no Spring Cloud
+              - RewritePath=/ead-authuser/(?<segment>.*), /$\{segment}
           
           - id: course-service
             uri: lb://EAD-COURSE-SERVICE
             predicates:
               - Path=/ead-course/**
             filters:
-              - RewritePath=/ead-course/(?<segment>.*), /${segment}
+              - RewritePath=/ead-course/(?<segment>.*), /$\{segment}
+
+          - id: notification-service
+            uri: lb://EAD-NOTIFICATION-SERVICE
+            predicates:
+              - Path=/ead-notification/**
+            filters:
+              - RewritePath=/ead-notification/(?<segment>.*), /$\{segment}
