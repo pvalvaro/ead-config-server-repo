@@ -6,27 +6,14 @@ spring:
     name: ead-api-gateway
   cloud:
     gateway:
-      mvc:
-        routes:
-          - id: authuser-service
-            uri: lb://EAD-AUTHUSER-SERVICE
-            predicates:
-              - Path=/ead-authuser/**
-            filters:
-              # Remove o prefixo /ead-authuser antes de enviar ao microserviço
-              # O uso de '$\' ou '$$' depende da versão, mas '$\' é o padrão para escape no Spring Cloud
-              - RewritePath=/ead-authuser/(?<segment>.*), /$\{segment}
-          
-          - id: course-service
-            uri: lb://EAD-COURSE-SERVICE
-            predicates:
-              - Path=/ead-course/**
-            filters:
-              - RewritePath=/ead-course/(?<segment>.*), /$\{segment}
-
-          - id: notification-service
-            uri: lb://EAD-NOTIFICATION-SERVICE
-            predicates:
-              - Path=/ead-notification/**
-            filters:
-              - RewritePath=/ead-notification/(?<segment>.*), /$\{segment}
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: authuser-service
+          uri: lb://EAD-AUTHUSER-SERVICE
+          predicates:
+            - Path=/ead-authuser/**
+          filters:
+            - StripPrefix=1
